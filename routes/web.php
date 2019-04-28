@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'MainController@pogoda');
+
+Route::prefix('orders')->group(function () {
+    Route::get('/', 'OrdersController@catalog');
+    Route::get('/{id}', 'OrdersController@view');
+    Route::post('/{id}', 'OrdersController@update');
+});
+
+Route::prefix('products')->group(function () {
+    Route::get('/', 'ProductsController@catalog');
+    Route::post('/{id}', 'ProductsController@update');
 });
